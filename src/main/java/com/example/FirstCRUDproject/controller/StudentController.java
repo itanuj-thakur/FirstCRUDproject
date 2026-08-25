@@ -72,4 +72,10 @@ public class StudentController {
                 "Student with ID " + id + " deleted successfully"
         );
     }
+    @PatchMapping("/{id}")
+    public  ResponseEntity<String> deleteStudentSoftly(@PathVariable int id ){
+        boolean isDeleted=studentService.deleteStudentSoftly(id);
+        if(!isDeleted) return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Failed to delete the student");
+        return ResponseEntity.ok("Student deleted softly");
+    }
 }
